@@ -1,8 +1,45 @@
 {% extends "movierating/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <p>Result:</p>
-  {{ result }}
-  <img src="{{ poster }}" width="200" height="300" />
-{% endblock content %}
+  <title>results/</title>
+</head>
+
+<body>
+
+  <main>
+    {% block content %}
+
+    <p>Result:</p>
+    <img src="{{ poster }}" width="200" height="300" />
+
+    <h1>{{title}}</h1>
+
+    <ul>
+      <li>Year<span class="outfit-light">: {{year_0}}</span></li>
+      <li>Rated<span class="outfit-light">: {{rated}}</span></li>
+      <li>Released<span class="outfit-light">: {{released}}</span></li>
+      <li>Runtime<span class="outfit-light">: {{runtime}}</span></li>
+      <li>Genre<span class="outfit-light">: {{genre}}</span></li>
+      <li>Director<span class="outfit-light">: {{director}}</span></li>
+      <li>Writer<span class="outfit-light">: {{writer}}</span></li>
+      <li>Actors<span class=outfit-light"">: {{actors}}</span></li>
+      <li>Plot<span class="outfit-light">: {{plot}}</span></li>
+      <li>Language<span class="outfit-light">: {{language}}</span></li>
+      <li>Country<span class="outfit-light">: {{country}}</span></li>
+      <li>Metascore<span class="outfit-light">: {{metascore}}</span></li>
+      <li>imdbrating<span class="outfit-light">: {{imdbrating}}</span></li>
+      <li>imdbvotes<span class="outfit-light">: {{imdbvotes}}</span></li>
+      <li>Type<span class="outfit-light">: {{type_0}}</span></li>
+    </ul>
+
+    {% endblock content %}
+  </main>
+</body>
+
+</html>

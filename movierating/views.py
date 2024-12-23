@@ -18,9 +18,6 @@ def new_request(request):
         page = 1
         active = True
         response = requests.get(f'https://www.omdbapi.com/?r=json&t={data}&page={page}&y={year}&apikey=36cd6ae').json()
-        # print(response)
-        roten_tomatoes = response['Ratings']
-        rotten_tomatoes = roten_tomatoes[0]
         title = response['Title']
         year_0 = response['Year']
         rated = response['Rated']
@@ -33,15 +30,28 @@ def new_request(request):
         plot = response['Plot']
         language = response['Language']
         country = response['Country']
-        awards = response['Awards']
-        poster = response['Poster']
         metascore = response['Metascore']
         imdbrating = response['imdbRating']
         imdbvotes = response['imdbVotes']
-        imdbid = response['imdbID']
         type_0 = response['Type']
-        info_display = f"Title: {title}\nYear: {year_0}\nRated: {rated}\nReleased: {released}\nRuntime: {runtime} Genre: {genre} Director: {director} Writer: {writer} Actors: {actors} Plot: {plot} Language: {language} Country: {country} Awards: {awards} Metascore: {metascore} imdbRating: {imdbrating} imdbVotes: {imdbvotes} Type: {type_0}"
-        # print(info_display)
+        poster = response['Poster']
+        request.session['title'] = title
+        request.session['year_0'] = year_0
+        request.session['rated'] = rated
+        request.session['released'] = released
+        request.session['runtime'] = runtime
+        request.session['genre'] = genre
+        request.session['director'] = director
+        request.session['writer'] = writer
+        request.session['actors'] = actors
+        request.session['plot'] = plot
+        request.session['language'] = language
+        request.session['country'] = country
+        request.session['metascore'] = metascore
+        request.session['imdbrating'] = imdbrating
+        request.session['imdbvotes'] = imdbvotes
+        request.session['type_0'] = type_0
+        request.session['poster'] = poster
         # while active:
         #     response = requests.get(f'https://www.omdbapi.com/?r=json&s={data}&page={page}&y={year}&apikey=36cd6ae').json()
         #     page += 1
@@ -49,8 +59,6 @@ def new_request(request):
         #         responses.append(response)
         #     else:
         #         break
-        request.session['response'] = info_display
-        request.session['poster'] = poster
         return redirect('movierating:results')
     else:
         form = MovieForm()
@@ -59,7 +67,40 @@ def new_request(request):
 
 def results(request):
     """Відобразити отримані результати."""
-    result = request.session['response']
+    title = request.session['title']
+    year_0 = request.session['year_0']
+    rated = request.session['rated']
+    released = request.session['released']
+    runtime = request.session['runtime']
+    genre = request.session['genre']
+    director = request.session['director']
+    writer = request.session['writer']
+    actors = request.session['actors']
+    plot = request.session['plot']
+    language = request.session['language']
+    country = request.session['country']
+    metascore = request.session['metascore']
+    imdbrating = request.session['imdbrating']
+    imdbvotes = request.session['imdbvotes']
+    type_0 = request.session['type_0']
     poster = request.session['poster']
-    context = {'result': result, 'poster': poster}
+    context = {
+        'title': title,
+        'year_0': year_0,
+        'rated': rated,
+        'released': released,
+        'runtime': runtime,
+        'genre': genre,
+        'director': director,
+        'writer': writer,
+        'actors': actors,
+        'plot': plot,
+        'language': language,
+        'country': country,
+        'metascore': metascore,
+        'imdbrating': imdbrating,
+        'imdbvotes': imdbvotes,
+        'type_0': type_0,
+        'poster': poster,
+    }
     return render(request, 'movierating/results.html', context)

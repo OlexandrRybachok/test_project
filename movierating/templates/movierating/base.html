@@ -1,8 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
-<p>
-  <a href="{% url 'movierating:index' %}">Test Project</a> - 
-  <a href="{% url 'movierating:new_request' %}">Make request</a> - 
-  <a href="{% url 'movierating:results' %}">Result</a>
-</p>
+<html lang="en">
 
-{% block content %}{% endblock content %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Young+Serif&display=swap" rel="stylesheet">
+
+  <title>Movierating/</title>
+  <link rel="stylesheet" , href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+  <p>
+    <a href="{% url 'movierating:index' %}">Test Project</a> -
+    <a href="{% url 'movierating:new_request' %}">Make request</a> -
+    <a href="{% url 'movierating:results' %}">Result</a>
+  </p>
+
+  {% block content %}{% endblock content %}
+</body>
+
+</html>
